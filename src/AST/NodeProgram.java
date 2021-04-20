@@ -9,14 +9,10 @@ public class NodeProgram extends NodeAST {
 		super();
 		this.decSts = decSts;
 	}
-	
-	public NodeProgram() {
-		super();
-		this.decSts = new ArrayList<NodeDecSt>();
-	}
+
 	@Override
 	public String toString() {
-		String s="";
+		String s="Node Program\n";
 		for (NodeDecSt nds: decSts)
 			s = s+nds.toString()+"\n";
 		return s;

@@ -15,6 +15,6 @@ public class NodeId extends NodeAST {
 	
 	public String toString() {
 		
-		return name;
+		return "Node Id " + name;
 	}
 }

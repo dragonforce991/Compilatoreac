@@ -21,6 +21,6 @@ public class NodeDecl extends NodeDecSt{
 	
 	@Override
 	public String toString() {
-		return id + " " + type;
+		return "NodeDecl " + id + " " + type;
 	}
 }

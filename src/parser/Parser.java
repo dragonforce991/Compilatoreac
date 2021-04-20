@@ -122,9 +122,9 @@ public class Parser {
 		case ID:
 			match(TokenType.ID);
 			match(TokenType.ASSIGN);
-			parseExp();
+			NodeExpr expr = parseExp();
 			match(TokenType.SEMI);
-			return null;
+			return new NodeAssign(new NodeId(tk.getVal()),expr);
 		case PRINT:
 			match(TokenType.PRINT);
 			Token t = match(TokenType.ID);
@@ -150,16 +150,16 @@ public class Parser {
 		case INT:
 		case FLOAT:
 		case ID:
-			parseTr();
-			parseExpP();
-			return null;
+			NodeExpr Tr = parseTr();
+			return parseExpP(Tr);
+			
 		default:
 			break;
 		}
 		
 		throw new ParserException("Found " + tk.getTipo() + " at line " + tk.getRiga());
 	}
-	private NodeExpr parseExpP() throws ParserException{
+	private NodeExpr parseExpP(NodeExpr left) throws ParserException{
 		Token tk;
 		try {
 			tk = scanner.peekToken();
@@ -170,16 +170,16 @@ public class Parser {
 		switch(tk.getTipo()) {
 		case PLUS:
 			match(TokenType.PLUS);
-			parseTr();
-			parseExpP();
-			return null;
+			NodeExpr Tr =parseTr();
+			NodeExpr res =parseExpP(new NodeBinOp(LangOper.PLUS, left, Tr));
+			return res;
 		case MINUS:
 			match(TokenType.MINUS);
-			parseTr();
-			parseExpP();
-			return null;
+			NodeExpr Tr1 = parseTr();
+			NodeExpr res1 = parseExpP(new NodeBinOp(LangOper.MINUS, left, Tr1));
+			return res1;
 		case SEMI:
-			return null;
+			return left;
 		
 		default:
 			break;
@@ -200,9 +200,8 @@ public class Parser {
 		case INT:
 		case FLOAT:
 		case ID:
-			parseVal();
-			parseTrP();
-			return null;
+			NodeExpr valNode = parseVal();
+			return parseTrP(valNode);
 		default:
 			break;
 		}
@@ -210,7 +209,7 @@ public class Parser {
 		throw new ParserException("Found " + tk.getTipo() + " at line " + tk.getRiga());
 	}
 	
-	private NodeExpr parseTrP() throws ParserException {
+	private NodeExpr parseTrP(NodeExpr left) throws ParserException {
 		Token tk;
 		try {
 			tk = scanner.peekToken();
@@ -221,18 +220,18 @@ public class Parser {
 		switch(tk.getTipo()) {
 		case TIMES:
 			match(TokenType.TIMES);
-			parseVal();
-			parseTrP();
-			return null;
+			NodeExpr val = parseVal();
+			return parseTrP(new NodeBinOp(LangOper.TIMES,left,val));
+			
 		case DIV:
 			match(TokenType.DIV);
-			parseVal();
-			parseTrP();
-			return null;
+			NodeExpr val1 =parseVal();
+			return parseTrP(new NodeBinOp(LangOper.DIV,left,val1));
+		
 		case PLUS:
 		case SEMI:
 		case MINUS:
-			return null;
+			return left;
 		default:
 			break;
 		}
@@ -251,13 +250,13 @@ public class Parser {
 		switch(tk.getTipo()) {
 		case INT:
 			match(TokenType.INT);
-			return null;
+			return new NodeCost(tk.getVal(), LangType.INTy);
 		case FLOAT:
 			match(TokenType.FLOAT);
-			return null;
+			return new NodeCost(tk.getVal(),LangType.FLOATy);
 		case ID:
 			match(TokenType.ID);
-			return null;
+			return new NodeDeref(new NodeId(tk.getVal()));
 		default:
 			break;
 		}

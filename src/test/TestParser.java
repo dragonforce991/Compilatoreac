@@ -108,6 +108,17 @@ public class TestParser {
 		ParserException exp = assertThrows(ParserException.class,()->parser.parse());
 		assertEquals(exp.getMessage(), "Found TIMES at line 1" );
 	}
+	
+	@Test
+	public void testScannerExceptionInsideParserException() throws FileNotFoundException, ParserException {
+		String path = "src/test/data/testParser/testException3.txt";
+		Parser parser = new Parser(new Scanner(path));
+		ParserException parserException = assertThrows(ParserException.class, () -> parser.parse());
+		assertEquals(parserException.getMessage(),"Scanner Exception");
+		assertEquals(parserException.getCause().getClass(),ScannerException.class);
+		assertEquals(parserException.getCause().getMessage(),"IOException");
+		assertEquals(parserException.getCause().getCause().getMessage(),"Unexpected number at row 2 near 698. Float number must have number after . Do you mean 698?");
+	}
 
 	
 }

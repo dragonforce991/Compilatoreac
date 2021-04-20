@@ -16,7 +16,7 @@ public class NodePrint extends NodeStm {
 
 	@Override
 	public String toString() {
-		return id.toString();
+		return "NodePrint " + id.toString();
 	}
 	
 	
