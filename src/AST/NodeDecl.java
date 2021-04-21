@@ -30,4 +30,7 @@ public class NodeDecl extends NodeDecSt{
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
 	}
+	
+	
+	
 }

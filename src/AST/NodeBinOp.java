@@ -21,4 +21,24 @@ public class NodeBinOp extends NodeExpr {
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
 	}
+	
+	
+	public LangOper getOp() {
+		return op;
+	}
+	
+	public NodeExpr getLeft() {
+		return left;
+	}
+	public NodeExpr getRight() {
+		return right;
+	}
+	
+	
+	public void setLeft(NodeExpr left) {
+		this.left = left;
+	}
+	public void setRight(NodeExpr right) {
+		this.right = right;
+	}
 }

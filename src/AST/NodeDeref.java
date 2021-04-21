@@ -5,7 +5,7 @@ import Visitor.IVisitor;
 public class NodeDeref extends NodeExpr{
 
 
-	NodeId id;
+	private NodeId id;
 	
 	public NodeDeref(NodeId nodeId) {
 		this.id = nodeId;
@@ -18,6 +18,10 @@ public class NodeDeref extends NodeExpr{
 	@Override
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
+	}
+	
+	public NodeId getId () {
+		return id;
 	}
 	
 }

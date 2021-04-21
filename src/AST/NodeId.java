@@ -7,9 +7,7 @@ public class NodeId extends NodeAST {
 	private final String name;
 	private Attributes description;
 
-	public String getName(){
-		return name;
-	}
+	
 	
 	public NodeId(String name) {
 
@@ -32,5 +30,9 @@ public class NodeId extends NodeAST {
 
 	public void setDescription(Attributes description) {
 		this.description = description;
+	}
+	
+	public String getName(){
+		return name;
 	}
 }

@@ -22,5 +22,12 @@ public class NodeCost extends NodeExpr {
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
 	}
+	
+	public String getValue() {
+		return value;
+	}
+	public LangType getType() {
+		return type;
+	}
 
 }

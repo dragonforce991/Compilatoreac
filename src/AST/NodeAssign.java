@@ -6,6 +6,7 @@ public class NodeAssign extends NodeStm {
 	
 	NodeId id;
 	NodeExpr expr;
+	
 	public NodeAssign(NodeId nodeId, NodeExpr expr2) {
 		this.id = nodeId;
 		this.expr = expr2;
@@ -20,6 +21,18 @@ public class NodeAssign extends NodeStm {
 	@Override
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
+	}
+	
+	public NodeId getNodeId() {
+		return id;
+	}
+	public NodeExpr getExpr() {
+		return expr;
+	}
+
+	public void setExpr(NodeExpr expr) {
+		this.expr = expr;
+		
 	}
 	
 }

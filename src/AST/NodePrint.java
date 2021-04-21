@@ -25,4 +25,5 @@ public class NodePrint extends NodeStm {
 	public void accept(IVisitor visitor) {
 		visitor.visit(this);	
 	}
+	
 }
