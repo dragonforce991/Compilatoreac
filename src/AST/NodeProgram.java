@@ -2,6 +2,8 @@ package AST;
 
 import java.util.ArrayList;
 
+import Visitor.IVisitor;
+
 public class NodeProgram extends NodeAST {
 	private final ArrayList<NodeDecSt> decSts;
 
@@ -16,6 +18,11 @@ public class NodeProgram extends NodeAST {
 		for (NodeDecSt nds: decSts)
 			s = s+nds.toString()+"\n";
 		return s;
+	}
+
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);	
 	}
 
 	

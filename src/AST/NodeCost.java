@@ -1,5 +1,7 @@
 package AST;
 
+import Visitor.IVisitor;
+
 public class NodeCost extends NodeExpr {
 	
 	String value;
@@ -14,6 +16,11 @@ public class NodeCost extends NodeExpr {
 	public String toString() {
 		
 		return "NodeCost " + this.type + " " + this.value;
+	}
+	
+	@Override
+	public void accept(IVisitor visitor) {
+		visitor.visit(this);	
 	}
 
 }
