@@ -1,0 +1,12 @@
+int a;
+int b;
+int c;
+
+
+a = 5.0;
+b = 10.0;
+
+c = a + b;
+c = c + 10.5;
+
+print c;

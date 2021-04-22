@@ -1,0 +1,12 @@
+float a;
+float b;
+float c;
+
+
+a = 5;
+b = 10;
+
+c = a + b;
+c = c + 10.5;
+
+print c;

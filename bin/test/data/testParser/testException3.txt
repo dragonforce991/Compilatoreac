@@ -1,0 +1,2 @@
+float num;
+num = 698.;
