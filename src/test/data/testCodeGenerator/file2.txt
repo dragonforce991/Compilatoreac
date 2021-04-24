@@ -1,0 +1,6 @@
+float c;
+float a;
+a = 2;
+c = a + 1.2 + 14 * 2 / 3.5;
+
+print c;

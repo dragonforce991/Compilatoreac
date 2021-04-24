@@ -44,7 +44,10 @@ public class CodeGeneratorVisitor implements IVisitor {
 		
 	}
 	private char newRegister() throws RegisterException{
-		if(registerIndex == 52) throw new RegisterException("too much variable");
+
+		if(registerIndex == 52) {
+			throw new RegisterException("too many variables");
+		} 
 		return this.registerName[registerIndex++];
 	}
 	@Override
@@ -111,6 +114,7 @@ public class CodeGeneratorVisitor implements IVisitor {
 
 	@Override
 	public void visit(NodeConvert node) {
+		
 		node.getExpr().accept(this);
 		codice += "5 k ";
 		is5k = true;
@@ -118,6 +122,9 @@ public class CodeGeneratorVisitor implements IVisitor {
 	public String getCodice() {
 		
 		return codice;
+	}
+	public String getError() {
+		return this.Error;
 	}
 
 }

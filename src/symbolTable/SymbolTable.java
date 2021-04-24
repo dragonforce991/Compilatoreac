@@ -1,6 +1,6 @@
 package symbolTable;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
 
 public class SymbolTable {
@@ -27,7 +27,7 @@ public class SymbolTable {
 		StringBuilder res = new StringBuilder("symbol table\n=============\n");
 
 		for (HashMap.Entry<String, Attributes> entry : table.entrySet())
-			res.append(entry.getKey()).append("   \t").append(entry.getValue())
+			res.append(entry.getKey()).append("   \t").append(entry.getValue().getType()).append("   \t").append(entry.getValue().getRegistro())
 					.append("\n");
 
 		return res.toString();

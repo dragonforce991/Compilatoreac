@@ -110,4 +110,15 @@ public class TypeCheckingVisitorTest {
 			assertEquals(s,"Errore nell'assegnamento. tipi non compatibili INTD FLOATD");
 		
 	}
+	
+	@Test
+	public void test7() throws FileNotFoundException, ParserException{
+		String path = "src/test/data/TypeCheckingVisitor/file4_doppiadichiarazione.txt";
+		Parser parser = new Parser(new Scanner(path));
+		NodeProgram np = parser.parse();
+		SymbolTable.init();
+		TypeCheckingVisitor visitor = new TypeCheckingVisitor();
+		np.accept(visitor);
+		assertEquals(visitor.getLog().get(0),"La variabile a è già definita");
+	}
 } 
