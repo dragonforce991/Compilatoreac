@@ -332,6 +332,33 @@ public class TestScanner {
 		assertEquals(t.getRiga(), 7);
 		assertEquals(t.getVal(),null);
 	}
+	@Test
+	public void testNumber() throws FileNotFoundException,IOException, ScannerException{
+		String path = "src/test/data/testNumbersError.txt";
+		Scanner scanner = new Scanner(path);
+		ScannerException e = assertThrows(ScannerException.class, () -> scanner.nextToken());
+		assertEquals(e.getMessage(),"unexpected character . at row 1");
+		Token t = scanner.nextToken();
+		assertEquals(t.getRiga(),1);
+		assertEquals(t.getTipo(),TokenType.INT);
+		assertEquals(t.getVal(),"99");
+		
+		t = scanner.nextToken();
+		assertEquals(t.getRiga(),2);
+		assertEquals(t.getTipo(),TokenType.INT);
+		assertEquals(t.getVal(),"33");
+		
+		t = scanner.nextToken();
+		assertEquals(t.getRiga(),2);
+		assertEquals(t.getTipo(),TokenType.ID);
+		assertEquals(t.getVal(),"a");
+		
+		t = scanner.nextToken();
+		assertEquals(t.getRiga(),2);
+		assertEquals(t.getTipo(),TokenType.INT);
+		assertEquals(t.getVal(),"2");
+		
+	}
 	
 	@Test
 	public void testPeekToken() throws FileNotFoundException,IOException, ScannerException {
